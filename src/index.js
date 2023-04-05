@@ -9,15 +9,15 @@ const symbols = {
   unchanged: ' ',
 };
 
-export const readFile = (pathToFile) => JSON.parse(readFileSync(path.resolve(process.cwd(), pathToFile), { encoding: 'utf8', flag: 'r' }));
+export const readFile = (filePath) => JSON.parse(readFileSync(path.resolve(process.cwd(), filePath), { encoding: 'utf8', flag: 'r' }));
 
 export const genDiff = (data1, data2) => {
-  const commonKeys = _.intersection(Object.keys(data1), Object.keys(data2));
-  const deletedKeys = _.difference(Object.keys(data1), Object.keys(data2));
+  const equalKeys = _.intersection(Object.keys(data1), Object.keys(data2));
+  const removedKeys = _.difference(Object.keys(data1), Object.keys(data2));
   const addedKeys = _.difference(Object.keys(data2), Object.keys(data1));
   const diffResult = {};
 
-  commonKeys.forEach((key) => {
+  equalKeys.forEach((key) => {
     const value1 = data1[key];
     const value2 = data2[key];
 
@@ -34,7 +34,7 @@ export const genDiff = (data1, data2) => {
     }
   });
 
-  deletedKeys.forEach((key) => {
+  removedKeys.forEach((key) => {
     diffResult[key] = {
       status: 'deleted',
       value: data1[key],
@@ -69,6 +69,6 @@ export const toString = (obj, spaces = 2) => {
     return result;
   }, '');
 
-  // return `{\n${str}}`;
   console.log(`{\n${str}}`);
+  return `{\n${str}}`;
 };

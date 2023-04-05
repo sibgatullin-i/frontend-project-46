@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 import { Command } from 'commander';
-import * as DiffFn from '../src/index.js';
+import * as DiffFn from './src/index.js';
 
 const program = new Command();
 
