@@ -1,74 +1,23 @@
-import { readFileSync } from 'fs';
+import fs from 'fs';
 import path from 'path';
-import process from 'node:process';
-import _ from 'lodash';
+import compareData from './compareData.js';
+import parser from './parser.js';
+import getFormat from './formatters/index.js';
 
-const symbols = {
-  added: '+',
-  deleted: '-',
-  unchanged: ' ',
+const getPath = (way) => path.resolve(process.cwd(), way);
+
+const genDiff = (filepath1, filepath2, formatName = 'stylish') => {
+  const absolutePath1 = getPath(filepath1);
+  const absolutePath2 = getPath(filepath2);
+
+  const content1 = fs.readFileSync(absolutePath1, 'utf-8');
+  const content2 = fs.readFileSync(absolutePath2, 'utf-8');
+
+  const parsedFile1 = parser(content1, filepath1.split('.')[1]);
+  const parsedFile2 = parser(content2, filepath2.split('.')[1]);
+
+  const differences = getFormat(compareData(parsedFile1, parsedFile2), formatName);
+  return differences;
 };
 
-export const readFile = (filePath) => JSON.parse(readFileSync(path.resolve(process.cwd(), filePath), { encoding: 'utf8', flag: 'r' }));
-
-export const genDiff = (data1, data2) => {
-  const equalKeys = _.intersection(Object.keys(data1), Object.keys(data2));
-  const removedKeys = _.difference(Object.keys(data1), Object.keys(data2));
-  const addedKeys = _.difference(Object.keys(data2), Object.keys(data1));
-  const diffResult = {};
-
-  equalKeys.forEach((key) => {
-    const value1 = data1[key];
-    const value2 = data2[key];
-
-    if (value1 === value2) {
-      diffResult[key] = {
-        status: 'unchanged',
-        value: value1,
-      };
-    } else {
-      diffResult[key] = {
-        status: 'changed',
-        value: [value1, value2],
-      };
-    }
-  });
-
-  removedKeys.forEach((key) => {
-    diffResult[key] = {
-      status: 'deleted',
-      value: data1[key],
-    };
-  });
-
-  addedKeys.forEach((key) => {
-    diffResult[key] = {
-      status: 'added',
-      value: data2[key],
-    };
-  });
-
-  return diffResult;
-};
-
-export const toString = (obj, spaces = 2) => {
-  const keys = Object.keys(obj).sort();
-  const indent = ' '.repeat(spaces);
-
-  const str = keys.reduce((res, key) => {
-    let result = res;
-    const [status] = [obj[key].status];
-
-    if (obj[key].status === 'changed') {
-      const [value1, value2] = [obj[key].value[0], obj[key].value[1]];
-      result += `${indent}${symbols.deleted} ${key}: ${value1}\n`;
-      result += `${indent}${symbols.added} ${key}: ${value2}\n`;
-    } else {
-      result += `${indent}${symbols[status]} ${key}: ${obj[key].value}\n`;
-    }
-    return result;
-  }, '');
-
-  console.log(`{\n${str}}`);
-  return `{\n${str}}`;
-};
+export default genDiff;

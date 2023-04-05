@@ -1,15 +1,18 @@
 #!/usr/bin/env node
-import { Command } from 'commander';
-import * as DiffFn from './src/index.js';
 
-const program = new Command();
+import { program } from 'commander/esm.mjs';
+import genDiff from './src/index.js';
 
 program
-  .version('0.0.1')
-  .description('Compares two configuration files and shows a difference.')
-  .arguments('<filepath1> <filepath2>')
-  .option('-f, --format <type>', 'output format')
-  .action((filepath1, filepath2) => {
-    DiffFn.toString(DiffFn.genDiff(DiffFn.readFile(filepath1), DiffFn.readFile(filepath2)));
+  .version('0.1.0')
+  .description('Compares two configuration files and shows a difference.');
+
+program
+  .argument('<filepath1>')
+  .argument('<filepath2>')
+  .option('-f, --format <type>', 'output format', 'stylish')
+  .action((filepath1, filepath2, options) => {
+    console.log(genDiff(filepath1, filepath2, options.format));
   });
+
 program.parse();
