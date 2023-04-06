@@ -1,0 +1,19 @@
+{
+  "name": "@hexlet/code",
+  "version": "0.0.1",
+  "description": "What a nice module!",
+  "main": "index.js",
+  "scripts": {
+    "test": "npx jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sibgatullin-i/frontend-project-46.git"
+  },
+  "author": "Ilya S",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sibgatullin-i/frontend-project-46/issues"
+  },
+  "homepage": "https://github.com/sibgatullin-i/frontend-project-46#readme"
+}
