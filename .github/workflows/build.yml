@@ -1,5 +1,5 @@
 # Name of workflow
-name: GitHub Actions Demo
+name: Build
 
 # Trigger the workflow on push or pull request
 on:
