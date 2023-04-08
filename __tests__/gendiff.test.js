@@ -77,19 +77,19 @@ test('stylish json files', () => {
 });
 
 test('stylish yaml files', () => {
-  const actual = genDiff('__fixtures__/nested1.yml', '__fixtures__/nested2.yaml');
+  const actual = genDiff('__fixtures__/nested1.yml', '__fixtures__/nested2.yml');
 
   expect(actual).toEqual(expected);
 });
 
 test('plain json files', () => {
-  const actual = genDiff('__fixtures__/nested1.yml', '__fixtures__/nested2.yaml', 'plain');
+  const actual = genDiff('__fixtures__/nested1.yml', '__fixtures__/nested2.yml', 'plain');
 
   expect(actual).toEqual(expected2);
 });
 
 test('json format', () => {
-  const actual = genDiff('__fixtures__/nested1.yml', '__fixtures__/nested2.yaml', 'json');
+  const actual = genDiff('__fixtures__/nested1.yml', '__fixtures__/nested2.yml', 'json');
 
   expect(actual).toEqual(expected3);
 });
