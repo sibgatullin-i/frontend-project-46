@@ -1,5 +1,5 @@
 import { test, expect } from '@jest/globals';
-import genDiff from '../index.js';
+import genDiff from '../index';
 
 const expected = `{
     common: {
