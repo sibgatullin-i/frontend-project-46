@@ -8,7 +8,7 @@
   },
   "type": "module",
   "bin": {
-    "gendiff": "./bin/gendiff.js"
+    "gendiff": "gendiff.js"
   },
   "repository": {
     "type": "git",
