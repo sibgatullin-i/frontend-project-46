@@ -2,7 +2,7 @@ install:
 	npm ci
 
 gendiff-help:
-	node bin/gendiff.js -h
+	node gendiff.js -h
 
 publish:
 	npm publish --dry-run
