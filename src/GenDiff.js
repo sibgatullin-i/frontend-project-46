@@ -1,7 +1,6 @@
-// import _ from 'lodash';
 import fs from 'fs';
 import path from 'path';
-import parseFile from './parser.js';
+import { parseFile, buildASTTree } from './parser.js';
 
 class GenDiff {
   constructor(file1, file2, format = null) {
@@ -23,10 +22,16 @@ class GenDiff {
     } catch (e) {
       throw new Error(`Failed to read files: ${e}`);
     }
+
+    this.tree = buildASTTree(this.files[0].parsed, this.files[1].parsed);
+  }
+
+  diff() {
+    
   }
 
   toString() {
-    console.log(JSON.stringify(this.files, 0, 1));
+    console.log(JSON.stringify(this.tree, 0, 1));
   }
 }
 

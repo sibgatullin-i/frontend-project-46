@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 import { Command } from 'commander';
-import GenDiff from './src/index.js';
+import GenDiff from './src/GenDiff.js';
 
 const program = new Command();
 
