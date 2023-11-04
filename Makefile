@@ -16,4 +16,7 @@ test-coverage:
 lint:
 	npx eslint .
 
+run:
+	node gendiff.js '__fixtures__/nested1.json' '__fixtures__/nested2.json'
+
 .PHONY: test
