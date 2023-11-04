@@ -26,10 +26,6 @@ class GenDiff {
     this.tree = buildASTTree(this.files[0].parsed, this.files[1].parsed);
   }
 
-  diff() {
-    
-  }
-
   toString() {
     console.log(JSON.stringify(this.tree, 0, 1));
   }

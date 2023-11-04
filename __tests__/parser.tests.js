@@ -1,7 +1,7 @@
 import { test, expect } from '@jest/globals';
 import fs from 'fs';
 // import path from 'path';
-import parseFile from '../src/parser.js';
+import { parseFile } from '../src/parser.js';
 
 const expected1 = {
   host: 'hexlet.io',

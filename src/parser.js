@@ -62,4 +62,4 @@ const buildASTTree = (obj1, obj2) => {
   return result;
 };
 
-export {parseFile, buildASTTree};
+export { parseFile, buildASTTree };
