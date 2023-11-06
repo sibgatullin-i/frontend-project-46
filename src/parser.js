@@ -13,6 +13,32 @@ const parseFile = (filepath, type) => {
   return {};
 };
 
+const flatDiff = (obj1, obj2) => {
+  const resultObject = [];
+  _.union(Object.keys(obj1), Object.keys(obj2)).forEach((key) => {
+    if (Object.keys(obj1).includes(key) && Object.keys(obj2).includes(key)) {
+      if (obj1[key] === obj2[key]) {
+        resultObject.push([' ', key, obj1[key]]);
+      } else {
+        resultObject.push(['-', key, obj1[key]]);
+        resultObject.push(['+', key, obj2[key]]);
+      }
+    }
+    if (Object.keys(obj1).includes(key) && !Object.keys(obj2).includes(key)) {
+      resultObject.push(['-', key, obj1[key]]);
+    }
+    if (!Object.keys(obj1).includes(key) && Object.keys(obj2).includes(key)) {
+      resultObject.push(['+', key, obj2[key]]);
+    }
+  });
+
+  const result = resultObject
+    .sort((a, b) => a[1] < b[1] ? -1 : 1)
+    .map((item) => `  ${item[0]} ${item[1]}: ${item[2]}`);
+
+  return `{\r\n${result.join('\r\n')}\r\n}`;
+};
+
 const buildASTTree = (obj1, obj2) => {
   const keys = _.union(Object.keys(obj1), Object.keys(obj2));
   const sortedKeys = _.sortBy(keys);
@@ -62,4 +88,4 @@ const buildASTTree = (obj1, obj2) => {
   return result;
 };
 
-export { parseFile, buildASTTree };
+export { parseFile, flatDiff, buildASTTree };

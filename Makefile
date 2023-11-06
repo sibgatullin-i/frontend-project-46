@@ -17,6 +17,6 @@ lint:
 	npx eslint .
 
 run:
-	node gendiff.js '__fixtures__/nested1.json' '__fixtures__/nested2.json'
+	node gendiff.js '__fixtures__/file1.json' '__fixtures__/file2.json'
 
 .PHONY: test
