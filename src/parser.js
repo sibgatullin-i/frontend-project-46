@@ -42,7 +42,7 @@ const flatDiff = (obj1, obj2) => {
   return `\n{\n${result.join('\n')}\n}\n`;
 };
 
-const buildASTTree = (obj1, obj2) => {
+/* const buildASTTree = (obj1, obj2) => {
   const keys = _.union(Object.keys(obj1), Object.keys(obj2));
   const sortedKeys = _.sortBy(keys);
   const result = sortedKeys.map((key) => {
@@ -89,6 +89,6 @@ const buildASTTree = (obj1, obj2) => {
   });
 
   return result;
-};
+}; */
 
-export { parseFile, flatDiff, buildASTTree };
+export { parseFile, flatDiff };

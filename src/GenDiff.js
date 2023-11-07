@@ -1,6 +1,6 @@
 import fs from 'fs';
 import path from 'path';
-import { parseFile, flatDiff/* , buildASTTree */ } from './parser.js';
+import { parseFile, flatDiff } from './parser.js';
 
 class GenDiff {
   constructor(file1, file2, format = null) {
@@ -24,7 +24,6 @@ class GenDiff {
     }
 
     this.flatDiffString = flatDiff(this.files[0].parsed, this.files[1].parsed);
-    // this.tree = buildASTTree(this.files[0].parsed, this.files[1].parsed);
   }
 
   toString() {

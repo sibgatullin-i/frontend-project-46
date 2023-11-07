@@ -7,6 +7,6 @@
 This tool compares two json or yaml files and show difference
 
 ### Usage
-1. Clone this repo `git clone https://github.com/belchanin/frontend-project-46`
+1. Clone this repo `git clone https://github.com/sibgatullin-i/frontend-project-46`
 2. Build and install `make install`
 3. Use it like this `gendiff <путь до первого файла> <путь до второго файла> --format [stylish/plain/json]`
