@@ -16,7 +16,7 @@ test-coverage:
 lint:
 	npx eslint .
 
-run:
+runflat:
 	node gendiff.js '__fixtures__/file1.json' '__fixtures__/file2.json'
 
 .PHONY: test

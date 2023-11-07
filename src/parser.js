@@ -33,10 +33,15 @@ const flatDiff = (obj1, obj2) => {
   });
 
   const result = resultObject
-    .sort((a, b) => a[1] < b[1] ? -1 : 1)
+    .sort((a, b) => {
+      if (a[1] < b[1]) {
+        return -1;
+      }
+      return 1;
+    })
     .map((item) => `  ${item[0]} ${item[1]}: ${item[2]}`);
 
-  return `{\r\n${result.join('\r\n')}\r\n}`;
+  return `\n{\n${result.join('\n')}\n}\n`;
 };
 
 const buildASTTree = (obj1, obj2) => {
