@@ -31,7 +31,6 @@ const flatDiff = (obj1, obj2) => {
       resultObject.push(['+', key, obj2[key]]);
     }
   });
-
   const result = resultObject
     .sort((a, b) => {
       if (a[1] < b[1]) {
@@ -40,7 +39,6 @@ const flatDiff = (obj1, obj2) => {
       return 1;
     })
     .map((item) => `  ${item[0]} ${item[1]}: ${item[2]}`);
-
   return `\n{\n${result.join('\n')}\n}\n`;
 };
 
